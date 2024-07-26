@@ -1,0 +1,51 @@
+import org.graphstream.graph.*;
+import org.graphstream.graph.implementations.*;
+import java.util.*;
+
+class City {
+    String name;
+    double latitude;
+    double longitude;
+
+    public City(String name, double latitude, double longitude) {
+        this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    @Override
+    public String toString() {
+        return name + " (" + latitude + ", " + longitude + ")";
+    }
+}
+
+class Road {
+    City city1;
+    City city2;
+    int lanes;
+
+    public Road(City city1, City city2, int lanes) {
+        this.city1 = city1;
+        this.city2 = city2;
+        this.lanes = lanes;
+    }
+}
+
+public class CityMap {
+    private static final int NUM_CITIES = 100;
+    private static final Random RANDOM = new Random();
+
+    public static void main(String[] args) {
+       
+        List<City> cities = generateRandomCities(NUM_CITIES);
+        printCities(cities);
+
+       
+        List<Road> roads = generateRoadConnections(cities);
+
+      
+        visualizeMap(cities, roads);
+    }
+
+    private static List<City> generateRandomCities(int numCities) {
+        List<City> cities = new 
